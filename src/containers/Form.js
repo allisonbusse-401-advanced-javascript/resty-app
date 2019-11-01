@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ResultsDisplay from '../components/ResultsDisplay';
+import { callApi } from '../services/callApi';
 
 export default class Form extends Component {
 
@@ -7,19 +8,29 @@ export default class Form extends Component {
     url: '',
     method: 'get',
     body: '',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     results: {
-      headers: '{}',
-      response: '{}'
+      headers: {},
+      response: {}
     },
     loading: false
   }
 
-  handleSubmit() {
-
+  handleSubmit = event => {
+    console.log(this.state.url, this.state.method, this.state.headers, this.state.body)
+    event.preventDefault();
+    this.setState({ loading: true })
+    callApi(this.state.url, this.state.method, this.state.headers, this.state.body)
+    .then(results => {
+      console.log(results)
+      this.setState({results, loading: false})}
+      )
   }
 
-  handleChange() {
-
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
   }
 
   render() {
@@ -30,23 +41,23 @@ export default class Form extends Component {
           <div className="radioButtons">
             <label>
               GET
-              <input type="radio" value="get" checked={this.state.method === 'get'} onChange={this.handleChange}></input>
+              <input type="radio" name="method" value="get" checked={this.state.method === 'get'} onChange={this.handleChange}></input>
             </label>
             <label>
               POST
-              <input type="radio" value="post" checked={this.state.method === 'post'} onChange={this.handleChange}></input>
+              <input type="radio" name="method" value="post" checked={this.state.method === 'post'} onChange={this.handleChange}></input>
             </label>
             <label>
               PUT
-              <input type="radio" value="put" checked={this.state.method === 'put'} onChange={this.handleChange}></input>
+              <input type="radio" name="method" value="put" checked={this.state.method === 'put'} onChange={this.handleChange}></input>
             </label>
             <label>
               PATCH
-              <input type="radio" value="patch" checked={this.state.method === 'patch'} onChange={this.handleChange}></input>
+              <input type="radio" name="method" value="patch" checked={this.state.method === 'patch'} onChange={this.handleChange}></input>
             </label>
             <label>
               DELETE
-              <input type="radio" value="delete" checked={this.state.method === 'delete'} onChange={this.handleChange}></input>
+              <input type="radio" name="method" value="delete" checked={this.state.method === 'delete'} onChange={this.handleChange}></input>
             </label>
           </div>
           <textarea name="body" placeholder="Raw JSON Body" value={this.state.body} onChange={this.handleChange}></textarea>
@@ -57,13 +68,7 @@ export default class Form extends Component {
           headers={this.state.results.headers}
           response={this.state.results.response}
         />
-
-
       </>
     );
-  }
-
-  static propTypes = {
-
   }
 }
