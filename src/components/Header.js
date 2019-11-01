@@ -5,7 +5,7 @@ const Header = () => (
 
   <h1 className={styles.Header}>RESTy</h1>
 
-)
+);
 
 
 
