@@ -13,7 +13,7 @@ const HistoryItem = ({ url, method }) => (
 
 HistoryItem.propTypes = {
   url: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
+  method: PropTypes.string.isRequired
 };
 
 

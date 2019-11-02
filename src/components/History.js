@@ -5,9 +5,9 @@ import HistoryItem from './HistoryItem';
 import styles from './History.css';
 
 const History = ({ historyItems }) => {
-  const historyElements = historyItems.map(history => (
-    <li key={`${history.url}-${history.method}`}>
-      <HistoryItem {...history} />
+  const historyElements = historyItems.map((history, index) => (
+    <li key={`${index}-${history.url}-${history.method}`} onClick={history.onHistoryClick}>
+      <HistoryItem url={history.url} method={history.method}/>
     </li>
   ));
 

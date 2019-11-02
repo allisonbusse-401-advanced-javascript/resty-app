@@ -27,15 +27,20 @@ export default class Resty extends Component {
 
     const historyObj = {
       url: this.state.url,
-      method: this.state.method
+      method: this.state.method,
+      onHistoryClick: this.historyClick
     };
-
 
     this.setState({ loading: true });
     callApi(this.state.url, this.state.method, this.state.headers, this.state.body)
       .then(results => {
         this.setState(state => ({ results, loading: false, history: [historyObj, ...state.history] }));
       });
+  }
+
+  historyClick = (event) => {
+    console.log(event)
+    this.setState({ url: event.url, method: event.method });
   }
 
   handleChange = ({ target }) => {
@@ -49,9 +54,9 @@ export default class Resty extends Component {
       handleChange: this.handleChange,
       url: this.state.url,
       method: this.state.method,
-      body: this.state.body
+      body: this.state.body,
     };
-
+    
     return (
       <div className={styles.Resty}>
         <History historyItems={this.state.history} />
