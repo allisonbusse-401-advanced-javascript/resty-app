@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Header.css';
+import styles from './Form.css';
 import PropTypes from 'prop-types';
 
 const Form = ({ handleSubmit, handleChange, url, method, body }) => (
-  <form onSubmit={handleSubmit}>
+  <form className={styles.Form} onSubmit={handleSubmit}>
     <input type="text" name="url" placeholder="URL" value={url} onChange={handleChange}></input>
     <div className="radioButtons">
       <label>

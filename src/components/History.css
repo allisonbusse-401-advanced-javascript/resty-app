@@ -1,0 +1,18 @@
+.History {
+  width: 500px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  li {
+    list-style: none;
+    background-color: #2D5986;
+    color: white;
+    padding: 2px 6px;
+  }
+  ul {
+    padding-left: 0;
+  }
+
+  li h2 {
+    text-transform: uppercase;
+  }
+}

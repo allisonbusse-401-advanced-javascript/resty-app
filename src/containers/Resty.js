@@ -3,6 +3,7 @@ import ResultsDisplay from '../components/ResultsDisplay';
 import Form from '../components/Form';
 import History from '../components/History';
 import { callApi } from '../services/callApi';
+import styles from './Resty.css';
 
 export default class Resty extends Component {
 
@@ -33,7 +34,7 @@ export default class Resty extends Component {
     this.setState({ loading: true });
     callApi(this.state.url, this.state.method, this.state.headers, this.state.body)
       .then(results => {
-        this.setState({ results, loading: false, history: this.state.history.push(historyObj) });
+        this.setState(state => ({ results, loading: false, history: [historyObj, ...state.history] }));
       });
   }
 
@@ -42,15 +43,26 @@ export default class Resty extends Component {
   }
 
   render() {
+
+    const formObject = {
+      handleSubmit: this.handleSubmit,
+      handleChange: this.handleChange,
+      url: this.state.url,
+      method: this.state.method,
+      body: this.state.body
+    };
+
     return (
-      <>
-        <History historyItems={this.state.history}/>
-        <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} url={this.state.url} method={this.state.method} body={this.state.body}/>
-        <ResultsDisplay
-          headers={this.state.results.headers}
-          response={this.state.results.response}
-        />
-      </>
+      <div className={styles.Resty}>
+        <History historyItems={this.state.history} />
+        <div>
+          <Form {...formObject} />
+          <ResultsDisplay
+            headers={this.state.results.headers}
+            response={this.state.results.response}
+          />
+        </div>
+      </div>
     );
   }
 }
