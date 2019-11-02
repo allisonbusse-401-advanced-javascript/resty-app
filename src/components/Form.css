@@ -1,0 +1,16 @@
+.Form {
+  input[type="radio" i] {
+    display: none;
+  }
+  label {
+    margin-right: 6px;
+    cursor: pointer;
+    background-color: #2D5986;
+    padding: 3px;
+    color: white;
+  }
+}
+.radioButtons {
+  display: flex;
+  justify-content: space-between;
+  }
