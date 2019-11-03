@@ -3,11 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const HistoryItem = ({ handleHistoryClick, url, method, headers, results }) => (
- 
-  <button onClick={handleHistoryClick(url, method, headers, results)}>
+  <div onClick={() => handleHistoryClick(url, method, headers, results)}>
     <h2>{method}</h2>
     <p>{url}</p>
-  </button>
+  </div>
 
 );
 

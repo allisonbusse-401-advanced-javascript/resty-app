@@ -72,7 +72,7 @@ export default class Resty extends Component {
 
 
 
-  handleHistoryClick = () => (url, method, headers, results) => {
+  handleHistoryClick = (url, method, headers, results) => {
     console.log(url, method, headers, results)
     this.setState({ url, method, headers, results });
   }
