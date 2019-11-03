@@ -43,16 +43,15 @@ export default class Resty extends Component {
 
 
 
-  historyClick = (event) => {
-    console.log(event)
-    // this.setState({ key: event.key });
-    // const storeObj = store.get(this.state.key);
-    // this.setState({ 
-    //   url: storeObj.url,
-    //   method: storeObj.method,
-    //   headers: storeObj.headers,
-    //   body: storeObj.body
-    // });
+  historyClick = ({ target }) => {
+    this.setState({ key: target.storekey });
+    const storeObj = store.get(this.state.key);
+    this.setState({ 
+      url: storeObj.url,
+      method: storeObj.method,
+      headers: storeObj.headers,
+      body: storeObj.body
+    });
   }
 
 
