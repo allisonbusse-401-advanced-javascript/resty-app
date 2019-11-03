@@ -1,5 +1,13 @@
+import store from './store';
+
 /* eslint-disable no-console */
 export const callApi = (url, method, headers, body) => {
+  
+  const storeKey = `${method}${Number(new Date)}`;
+
+  store.save(storeKey, { url, method, headers, body });
+
+
   try {
     let fetchObject = {
       method,
@@ -7,6 +15,7 @@ export const callApi = (url, method, headers, body) => {
     };
 
     if(body !== '') fetchObject.body = body;
+
 
     return fetch(url, fetchObject)
       .then(res => 
@@ -18,15 +27,17 @@ export const callApi = (url, method, headers, body) => {
           res.json()
         ]))
       .then(([headers, response]) => {
-
         return {
+          storeKey,
           headers,
           response
         };
       });
   } 
+
+
   catch(error) {
-    console.error('Error', error);
+    console.log(error);
   }
 };
 

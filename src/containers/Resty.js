@@ -4,6 +4,7 @@ import Form from '../components/Form';
 import History from '../components/History';
 import { callApi } from '../services/callApi';
 import styles from './Resty.css';
+import store from '../services/store';
 
 export default class Resty extends Component {
 
@@ -19,8 +20,10 @@ export default class Resty extends Component {
       response: {}
     },
     loading: false,
-    history: []
+    history: [],
+    storeKey: ''
   }
+
 
   handleSubmit = event => {
     event.preventDefault();
@@ -28,7 +31,7 @@ export default class Resty extends Component {
     const historyObj = {
       url: this.state.url,
       method: this.state.method,
-      onHistoryClick: this.historyClick
+      storeKey: this.state.storeKey,
     };
 
     this.setState({ loading: true });
@@ -38,14 +41,27 @@ export default class Resty extends Component {
       });
   }
 
+
+
   historyClick = (event) => {
     console.log(event)
-    this.setState({ url: event.url, method: event.method });
+    // this.setState({ key: event.key });
+    // const storeObj = store.get(this.state.key);
+    // this.setState({ 
+    //   url: storeObj.url,
+    //   method: storeObj.method,
+    //   headers: storeObj.headers,
+    //   body: storeObj.body
+    // });
   }
+
+
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   }
+
+
 
   render() {
 
@@ -59,7 +75,7 @@ export default class Resty extends Component {
     
     return (
       <div className={styles.Resty}>
-        <History historyItems={this.state.history} />
+        <History historyItems={this.state.history} onHistoryClick={this.historyClick}/>
         <div>
           <Form {...formObject} />
           <ResultsDisplay

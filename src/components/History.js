@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import HistoryItem from './HistoryItem';
 import styles from './History.css';
 
-const History = ({ historyItems }) => {
+const History = ({ historyItems, onHistoryClick }) => {
   const historyElements = historyItems.map((history, index) => (
-    <li key={`${index}-${history.url}-${history.method}`} onClick={history.onHistoryClick}>
+    <li key={`${index}-${history.url}-${history.method}`} storekey={history.storeKey}>
       <HistoryItem url={history.url} method={history.method}/>
     </li>
   ));
@@ -14,7 +14,7 @@ const History = ({ historyItems }) => {
   return (
     <div className={styles.History}>
       <h2>History</h2>
-      <ul>
+      <ul onClick={onHistoryClick}>
         {historyElements}
       </ul>
     </div>
@@ -22,7 +22,8 @@ const History = ({ historyItems }) => {
 };
 
 History.propTypes = {
-  historyItems: PropTypes.array.isRequired
+  historyItems: PropTypes.array.isRequired,
+  onHistoryClick: PropTypes.func.isRequired
 };
 
 
