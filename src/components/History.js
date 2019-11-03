@@ -6,8 +6,8 @@ import styles from './History.css';
 
 const History = ({ historyItems, onHistoryClick }) => {
   const historyElements = historyItems.map((history, index) => (
-    <li key={`${index}-${history.url}-${history.method}`} storekey={history.storeKey}>
-      <HistoryItem url={history.url} method={history.method}/>
+    <li key={`${index}-${history.url}-${history.method}`}>
+      <HistoryItem {...history}/>
     </li>
   ));
 
@@ -22,8 +22,7 @@ const History = ({ historyItems, onHistoryClick }) => {
 };
 
 History.propTypes = {
-  historyItems: PropTypes.array.isRequired,
-  onHistoryClick: PropTypes.func.isRequired
+  historyItems: PropTypes.array.isRequired
 };
 
 

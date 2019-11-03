@@ -32,6 +32,7 @@ export default class Resty extends Component {
       url: this.state.url,
       method: this.state.method,
       storeKey: this.state.storeKey,
+      onHistoryClick: this.historyClick
     };
 
     this.setState({ loading: true });
@@ -43,7 +44,8 @@ export default class Resty extends Component {
 
 
 
-  historyClick = ({ target }) => {
+  historyClick = (event) => {
+    console.log(event)
     this.setState({ key: target.storekey });
     const storeObj = store.get(this.state.key);
     this.setState({ 
@@ -74,7 +76,7 @@ export default class Resty extends Component {
     
     return (
       <div className={styles.Resty}>
-        <History historyItems={this.state.history} onHistoryClick={this.historyClick}/>
+        <History historyItems={this.state.history}/>
         <div>
           <Form {...formObject} />
           <ResultsDisplay
