@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ResultsDisplay from '../components/ResultsDisplay';
 import Form from '../components/Form';
-import HeaderForm from '../components/HeaderForm';
+// import HeaderForm from '../components/HeaderForm';
 import History from '../components/History';
 import { callApi } from '../services/callApi';
 import styles from './Resty.css';
-import store from '../services/store';
+// import store from '../services/store';
 //need to find a way to convert to base 64
 
 export default class Resty extends Component {
@@ -36,8 +36,9 @@ export default class Resty extends Component {
     const historyObj = {
       url: this.state.url,
       method: this.state.method,
-      storeKey: this.state.storeKey,
-      onHistoryClick: this.historyClick
+      headers: this.state.headers,
+      results: this.state.results
+      // authUsername: this.autUsername
     };
 
     this.setState({ loading: true });
@@ -46,6 +47,7 @@ export default class Resty extends Component {
         this.setState(state => ({ results, loading: false, history: [historyObj, ...state.history] }));
       });
   }
+
 
   handleHeaderSubmit = event => {
     event.preventDefault();
@@ -70,16 +72,9 @@ export default class Resty extends Component {
 
 
 
-  historyClick = (event) => {
-    console.log(event);
-    this.setState({ key: event.target.storekey });
-    const storeObj = store.get(this.state.key);
-    this.setState({ 
-      url: storeObj.url,
-      method: storeObj.method,
-      headers: storeObj.headers,
-      body: storeObj.body
-    });
+  handleHistoryClick = () => (url, method, headers, results) => {
+    console.log(url, method, headers, results)
+    this.setState({ url, method, headers, results });
   }
 
 
@@ -100,19 +95,19 @@ export default class Resty extends Component {
       body: this.state.body,
     };
 
-    const headerFormObj = {
-      handleHeaderSubmit: this.handleHeaderSubmit,
-      handleChange: this.handleChange,
-      authUsername:  this.AuthUsername,
-      authPassword: this.AuthPassword,
-      authToken: this.AuthToken,
-    };
+    // const headerFormObj = {
+    //   handleHeaderSubmit: this.handleHeaderSubmit,
+    //   handleChange: this.handleChange,
+    //   authUsername:  this.AuthUsername,
+    //   authPassword: this.AuthPassword,
+    //   authToken: this.AuthToken,
+    // };
     
     return (
       <div className={styles.Resty}>
-        <History historyItems={this.state.history}/>
+        <History handleHistoryClick={this.handleHistoryClick} historyItems={this.state.history}/>
         <div>
-          <HeaderForm {...headerFormObj} />
+          {/* <HeaderForm {...headerFormObj} /> */}
           <Form {...formObject} />
           <ResultsDisplay
             headers={this.state.results.headers}

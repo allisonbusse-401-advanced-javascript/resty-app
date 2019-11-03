@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import HistoryItem from './HistoryItem';
 import styles from './History.css';
 
-const History = ({ historyItems }) => {
+const History = ({ handleHistoryClick, historyItems }) => {
   const historyElements = historyItems.map((history, index) => (
     <li key={`${index}-${history.url}-${history.method}`}>
-      <HistoryItem {...history}/>
+      <HistoryItem handleHistoryClick={handleHistoryClick} {...history}/>
     </li>
   ));
 
@@ -22,7 +22,8 @@ const History = ({ historyItems }) => {
 };
 
 History.propTypes = {
-  historyItems: PropTypes.array.isRequired
+  historyItems: PropTypes.array.isRequired,
+  handleHistoryClick: PropTypes.func.isRequired
 };
 
 
