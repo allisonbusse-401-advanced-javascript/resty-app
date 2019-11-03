@@ -38,7 +38,7 @@ Form.propTypes = {
   handleChange: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
 };
 
 export default Form;

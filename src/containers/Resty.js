@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ResultsDisplay from '../components/ResultsDisplay';
 import Form from '../components/Form';
+import HeaderForm from '../components/HeaderForm';
 import History from '../components/History';
 import { callApi } from '../services/callApi';
 import styles from './Resty.css';
 import store from '../services/store';
+//need to find a way to convert to base 64
 
 export default class Resty extends Component {
 
@@ -21,7 +23,10 @@ export default class Resty extends Component {
     },
     loading: false,
     history: [],
-    storeKey: ''
+    storeKey: '',
+    authUsername: '',
+    authPassword: '',
+    authToken: ''
   }
 
 
@@ -42,11 +47,32 @@ export default class Resty extends Component {
       });
   }
 
+  handleHeaderSubmit = event => {
+    event.preventDefault();
+
+    const authKey = 'Authorization';
+
+    if(this.authToken !== '') {
+      this.setState({ headers: {
+        [authKey]: `Bearer ${this.state.authToken}`
+      }
+      });
+    }
+
+    if(this.authUsername !== '' && this.authPassword !== '') {
+      this.setState({ headers: {
+        //need to find a way to encode into base 64
+        [authKey]: `Basic ${base64.encode(`${this.state.authUsername}:${this.state.authPassword}`)}`
+      } 
+      });
+    }
+  }
+
 
 
   historyClick = (event) => {
-    console.log(event)
-    this.setState({ key: target.storekey });
+    console.log(event);
+    this.setState({ key: event.target.storekey });
     const storeObj = store.get(this.state.key);
     this.setState({ 
       url: storeObj.url,
@@ -73,11 +99,20 @@ export default class Resty extends Component {
       method: this.state.method,
       body: this.state.body,
     };
+
+    const headerFormObj = {
+      handleHeaderSubmit: this.handleHeaderSubmit,
+      handleChange: this.handleChange,
+      authUsername:  this.AuthUsername,
+      authPassword: this.AuthPassword,
+      authToken: this.AuthToken,
+    };
     
     return (
       <div className={styles.Resty}>
         <History historyItems={this.state.history}/>
         <div>
+          <HeaderForm {...headerFormObj} />
           <Form {...formObject} />
           <ResultsDisplay
             headers={this.state.results.headers}
