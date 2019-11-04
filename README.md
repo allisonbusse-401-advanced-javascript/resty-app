@@ -5,7 +5,7 @@ This lab recreates the Resty app which is a browser version of Postman.
 
 ### Links and Resources
 * [submission PR](https://github.com/allisonbusse-401-advanced-javascript/resty-app/pull/3)
-* [travis](https://travis-ci.com/allisonbusse-401-advanced-javascript/resty-app/builds/134903888)
+* [travis](https://travis-ci.com/allisonbusse-401-advanced-javascript/resty-app/)
 
 
 
