@@ -51,16 +51,19 @@ export default class Resty extends Component {
         this.setState(state => ({ 
           loading: false, 
           history: [historyObj, ...state.history],
+        })
+        );
+      })
+      .then(() => {
+        store.save('history', this.state.history);
+        this.setState({
           authUsername: '', 
           authPassword: '', 
           authToken: '',
           headers: {
             'Content-Type': 'application/json'
-          }
-        }));
-      })
-      .then(() => {
-        store.save('history', this.state.history);
+          } 
+        });
       });
   }
 
