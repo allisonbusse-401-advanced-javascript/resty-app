@@ -71,7 +71,7 @@ export default class Resty extends Component {
   handleHeaderSubmit = event => {
     event.preventDefault();
 
-    if(this.authToken !== '') {
+    if(this.state.authToken !== '') {
       this.setState({ headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.state.authToken}`
@@ -79,7 +79,7 @@ export default class Resty extends Component {
       });
     }
 
-    if(this.authUsername !== '' && this.authPassword !== '') {
+    if(this.state.authUsername !== '' && this.state.authPassword !== '') {
       this.setState({ headers: {
         'Content-Type': 'application/json',
         'Authorization': `Basic ${base64.encode(`${this.state.authUsername}:${this.state.authPassword}`)}`
@@ -90,7 +90,7 @@ export default class Resty extends Component {
 
   componentDidMount() {
     const history = store.get('history');
-    this.setState(history);
+    this.setState({ history });
   }
 
   handleHistoryClick = (url, method, headers, results) => {
