@@ -4,13 +4,21 @@
   }
   label {
     margin-right: 6px;
+    margin: 5px 6px 5px 0;
     cursor: pointer;
-    background-color: #2D5986;
     padding: 3px;
+    color: black;
+  }
+  label:hover {
+    background-color: lightgray;
+  }
+  input:checked + label {
+    background-color: #2D5986;
     color: white;
   }
 }
 .radioButtons {
   display: flex;
   justify-content: space-between;
+  padding: 15px 0;
   }
