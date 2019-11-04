@@ -1,16 +1,37 @@
 .Form {
+  padding-top: 40px;
+
   input[type="radio" i] {
     display: none;
   }
+  input[type="text"] {
+    width: 900px;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
   label {
     margin-right: 6px;
+    margin: 5px 6px 5px 0;
     cursor: pointer;
-    background-color: #2D5986;
     padding: 3px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  label:hover {
+    background-color: lightgray;
+  }
+  input:checked + label {
+    background-color: #2D5986;
     color: white;
+  }
+  textarea {
+    margin-top: 20px;
+    width: 400px;
+    height: 100px;
   }
 }
 .radioButtons {
   display: flex;
   justify-content: space-between;
+  padding: 15px 0;
   }

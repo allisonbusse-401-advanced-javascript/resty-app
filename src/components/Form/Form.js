@@ -6,29 +6,27 @@ const Form = ({ handleSubmit, handleChange, url, method, body }) => (
   <form className={styles.Form} onSubmit={handleSubmit}>
     <input type="text" name="url" placeholder="URL" value={url} onChange={handleChange}></input>
     <div className="radioButtons">
-      <label>
-              GET
-        <input type="radio" name="method" value="get" checked={method === 'get'} onChange={handleChange}></input>
-      </label>
-      <label>
-              POST
-        <input type="radio" name="method" value="post" checked={method === 'post'} onChange={handleChange}></input>
-      </label>
-      <label>
-              PUT
-        <input type="radio" name="method" value="put" checked={method === 'put'} onChange={handleChange}></input>
-      </label>
-      <label>
-              PATCH
-        <input type="radio" name="method" value="patch" checked={method === 'patch'} onChange={handleChange}></input>
-      </label>
-      <label>
-              DELETE
-        <input type="radio" name="method" value="delete" checked={method === 'delete'} onChange={handleChange}></input>
-      </label>
+      <input type="radio" id="get" name="method" value="get" checked={method === 'get'} onChange={handleChange}></input>
+      <label htmlFor="get">
+        GET</label>
+
+      <input type="radio" id="post" name="method" value="post" checked={method === 'post'} onChange={handleChange}></input>
+      <label htmlFor="post">
+        POST</label>
+
+      <input type="radio" id="put" name="method" value="put" checked={method === 'put'} onChange={handleChange}></input>
+      <label htmlFor="put">
+        PUT</label>
+      <input type="radio" name="method" id="patch" value="patch" checked={method === 'patch'} onChange={handleChange}></input>
+      <label htmlFor="patch">
+        PATCH</label>
+
+      <input type="radio" id="delete" name="method" value="delete" checked={method === 'delete'} onChange={handleChange}></input>
+      <label htmlFor="delete">
+        DELETE</label>
+      <button>Go!</button>
     </div>
     <textarea name="body" placeholder="Raw JSON Body" value={body} onChange={handleChange}></textarea>
-    <button>Go!</button>
   </form>
 
 );
