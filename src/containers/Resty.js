@@ -125,8 +125,8 @@ export default class Resty extends Component {
       <div className={styles.Resty}>
         <History handleHistoryClick={this.handleHistoryClick} historyItems={this.state.history}/>
         <div>
-          <HeaderForm {...headerFormObj} />
           <Form {...formObject} />
+          <HeaderForm {...headerFormObj} />
           <ResultsDisplay
             headers={this.state.results.headers}
             response={this.state.results.response}
