@@ -24,9 +24,9 @@ const Form = ({ handleSubmit, handleChange, url, method, body }) => (
       <input type="radio" id="delete" name="method" value="delete" checked={method === 'delete'} onChange={handleChange}></input>
       <label htmlFor="delete">
         DELETE</label>
+      <button>Go!</button>
     </div>
     <textarea name="body" placeholder="Raw JSON Body" value={body} onChange={handleChange}></textarea>
-    <button>Go!</button>
   </form>
 
 );
