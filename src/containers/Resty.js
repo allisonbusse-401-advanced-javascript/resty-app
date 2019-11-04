@@ -6,7 +6,6 @@ import History from '../components/History/History';
 import { callApi } from '../services/callApi';
 import styles from './Resty.css';
 import store from '../services/store';
-import base64 from 'react-native-base64';
 
 
 export default class Resty extends Component {
@@ -82,7 +81,7 @@ export default class Resty extends Component {
     if(this.state.authUsername !== '' && this.state.authPassword !== '') {
       this.setState({ headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${base64.encode(`${this.state.authUsername}:${this.state.authPassword}`)}`
+        'Authorization': `Basic ${btoa(`${this.state.authUsername}:${this.state.authPassword}`)}`
       } 
       });
     }
