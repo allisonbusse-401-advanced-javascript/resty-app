@@ -35,12 +35,12 @@ export default class Resty extends Component {
     event.preventDefault();
     
     this.setState({ loading: true });
+
     callApi(this.state.url, this.state.method, this.state.headers, this.state.body)
       .then(results => {
         this.setState({ results });
       })
       .then(()=> {
-
         const historyObj = {
           url: this.state.url,
           method: this.state.method,
@@ -49,7 +49,6 @@ export default class Resty extends Component {
         };
 
         this.setState(state => ({ 
-          loading: false, 
           history: [historyObj, ...state.history],
         })
         );
@@ -57,6 +56,7 @@ export default class Resty extends Component {
       .then(() => {
         store.save('history', this.state.history);
         this.setState({
+          loading: false, 
           authUsername: '', 
           authPassword: '', 
           authToken: '',
@@ -101,7 +101,9 @@ export default class Resty extends Component {
     this.setState({ [target.name]: target.value });
   }
 
+
   render() {
+    if(this.state.loading) return <img src="https://media.giphy.com/media/l3nWhI38IWDofyDrW/giphy.gif" alt="Loading Image"/>;
 
     const formObject = {
       handleSubmit: this.handleSubmit,
