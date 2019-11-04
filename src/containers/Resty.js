@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ResultsDisplay from '../components/ResultsDisplay';
-import Form from '../components/Form';
-import HeaderForm from '../components/HeaderForm';
-import History from '../components/History';
+import ResultsDisplay from '../components/ResultsDisplay/ResultsDisplay';
+import Form from '../components/Form/Form';
+import HeaderForm from '../components/HeaderForm/HeaderForm';
+import History from '../components/History/History';
 import { callApi } from '../services/callApi';
 import styles from './Resty.css';
 import store from '../services/store';

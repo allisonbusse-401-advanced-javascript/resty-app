@@ -1,5 +1,4 @@
 import React from 'react';
-// import styles from './Header.css';
 import PropTypes from 'prop-types';
 
 const HistoryItem = ({ handleHistoryClick, url, method, headers, results }) => (

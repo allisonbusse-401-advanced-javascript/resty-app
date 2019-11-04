@@ -1,7 +1,6 @@
 import React from 'react';
-// import styles from './Header.css';
 import PropTypes from 'prop-types';
-import HistoryItem from './HistoryItem';
+import HistoryItem from '../HistoryItem/HistoryItem';
 import styles from './History.css';
 
 const History = ({ handleHistoryClick, historyItems }) => {

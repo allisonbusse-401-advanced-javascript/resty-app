@@ -5,7 +5,7 @@ const Footer = () => (
 
   <p className={styles.Footer}>&copy; Allison &amp; Joe - East Coast: Beast Coast</p>
 
-)
+);
 
 
 
