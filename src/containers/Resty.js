@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ResultsDisplay from '../components/ResultsDisplay';
 import Form from '../components/Form';
-// import HeaderForm from '../components/HeaderForm';
+import HeaderForm from '../components/HeaderForm';
 import History from '../components/History';
 import { callApi } from '../services/callApi';
 import styles from './Resty.css';
-// import store from '../services/store';
-//need to find a way to convert to base 64
+import store from '../services/store';
+import base64 from 'react-native-base64';
+
 
 export default class Resty extends Component {
 
@@ -32,19 +33,25 @@ export default class Resty extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    const historyObj = {
-      url: this.state.url,
-      method: this.state.method,
-      headers: this.state.headers,
-      results: this.state.results
-      // authUsername: this.autUsername
-    };
-
+    
     this.setState({ loading: true });
     callApi(this.state.url, this.state.method, this.state.headers, this.state.body)
       .then(results => {
-        this.setState(state => ({ results, loading: false, history: [historyObj, ...state.history] }));
+        this.setState({ results });
+      })
+      .then(()=> {
+
+        const historyObj = {
+          url: this.state.url,
+          method: this.state.method,
+          headers: this.state.headers,
+          results: this.state.results
+        };
+
+        this.setState(state => ({ loading: false, history: [historyObj, ...state.history] }));
+      })
+      .then(() => {
+        store.save('history', this.state.history);
       });
   }
 
@@ -63,27 +70,24 @@ export default class Resty extends Component {
 
     if(this.authUsername !== '' && this.authPassword !== '') {
       this.setState({ headers: {
-        //need to find a way to encode into base 64
         [authKey]: `Basic ${base64.encode(`${this.state.authUsername}:${this.state.authPassword}`)}`
       } 
       });
     }
   }
 
-
-
-  handleHistoryClick = (url, method, headers, results) => {
-    console.log(url, method, headers, results)
-    this.setState({ url, method, headers, results });
+  componentDidMount() {
+    const history = store.get('history');
+    this.setState(history);
   }
 
-
+  handleHistoryClick = (url, method, headers, results) => {
+    this.setState({ url, method, headers, results });
+  }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   }
-
-
 
   render() {
 
@@ -95,19 +99,19 @@ export default class Resty extends Component {
       body: this.state.body,
     };
 
-    // const headerFormObj = {
-    //   handleHeaderSubmit: this.handleHeaderSubmit,
-    //   handleChange: this.handleChange,
-    //   authUsername:  this.AuthUsername,
-    //   authPassword: this.AuthPassword,
-    //   authToken: this.AuthToken,
-    // };
+    const headerFormObj = {
+      handleHeaderSubmit: this.handleHeaderSubmit,
+      handleChange: this.handleChange,
+      authUsername:  this.AuthUsername,
+      authPassword: this.AuthPassword,
+      authToken: this.AuthToken,
+    };
     
     return (
       <div className={styles.Resty}>
         <History handleHistoryClick={this.handleHistoryClick} historyItems={this.state.history}/>
         <div>
-          {/* <HeaderForm {...headerFormObj} /> */}
+          <HeaderForm {...headerFormObj} />
           <Form {...formObject} />
           <ResultsDisplay
             headers={this.state.results.headers}

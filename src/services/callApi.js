@@ -1,11 +1,5 @@
-// import store from './store';
-
 /* eslint-disable no-console */
-export const callApi = (url, method, headers, body) => {
-  
-  // const storeKey = `${method}${Number(new Date)}`;
-
-  // store.save(storeKey, { url, method, headers, body });
+export const callApi = (url, method, headers, body) => {  
 
 
   try {
@@ -28,7 +22,6 @@ export const callApi = (url, method, headers, body) => {
         ]))
       .then(([headers, response]) => {
         return {
-          // storeKey,
           headers,
           response
         };
