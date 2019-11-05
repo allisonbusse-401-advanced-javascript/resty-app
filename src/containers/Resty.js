@@ -89,7 +89,9 @@ export default class Resty extends Component {
 
   componentDidMount() {
     const history = store.get('history');
-    this.setState({ history });
+    if(history) {
+      this.setState({ history });
+    }
   }
 
   handleHistoryClick = (url, method, headers, results) => {
