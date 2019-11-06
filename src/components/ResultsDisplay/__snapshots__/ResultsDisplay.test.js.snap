@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsDisplay component renders ResultsDisplay 1`] = `
+<div
+  className="ResultsDisplay"
+>
+  <pre>
+    "Headers" : 
+    {}
+  </pre>
+  <pre>
+    "Response" : 
+    {}
+  </pre>
+</div>
+`;

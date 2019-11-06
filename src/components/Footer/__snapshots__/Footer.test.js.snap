@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders Footer 1`] = `
+<p
+  className="Footer"
+>
+  © Allison & Joe - East Coast: Beast Coast
+</p>
+`;

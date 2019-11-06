@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderForm component renders HeaderForm 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <button>
+    Headers
+  </button>
+  <div>
+    <h2>
+      Basic Authorization
+    </h2>
+    <input
+      name="authUsername"
+      onChange={[Function]}
+      placeholder="Username"
+      type="text"
+      value="jkl"
+    />
+    <input
+      name="authPassword"
+      onChange={[Function]}
+      placeholder="Password"
+      type="password"
+      value="jkl"
+    />
+  </div>
+  <div>
+    <h2>
+      Bearer Token
+    </h2>
+    <input
+      name="authToken"
+      onChange={[Function]}
+      placeholder="Bearer Token"
+      type="text"
+      value="uio"
+    />
+  </div>
+</form>
+`;
