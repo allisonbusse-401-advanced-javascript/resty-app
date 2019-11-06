@@ -117,9 +117,9 @@ export default class Resty extends Component {
     const headerFormObj = {
       handleHeaderSubmit: this.handleHeaderSubmit,
       handleChange: this.handleChange,
-      authUsername:  this.AuthUsername,
-      authPassword: this.AuthPassword,
-      authToken: this.AuthToken,
+      authUsername:  this.state.authUsername,
+      authPassword: this.state.authPassword,
+      authToken: this.state.authToken,
     };
     
     return (
